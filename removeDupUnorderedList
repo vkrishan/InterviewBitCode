@@ -1,0 +1,61 @@
+
+public class RemoveDuplicatesUnrderedLL{
+	
+	// 1,6,2,5,3,5,2,7    --- Ordered list
+	// Iterate each element
+	// Store then in HashSet
+	// Iterate through the Hashset and populate the new LL
+
+	Node head;
+
+	// ......
+	removeDuplicates(Node node){
+
+		HashSet<Integer> hs = new HashSet<>();
+		Node current = node;
+		Node previous = null;
+
+		while(current!=null){
+
+			if(hs.contains(current.data)){
+				previous.next = current.next;
+
+			}else{
+			hs.add(current.data);
+			previous = current;
+			}
+			current = current.next;
+		}
+	}
+
+	//......
+
+
+
+
+}
+
+
+class Node {
+	int data;
+	Node next;
+
+	// constructor
+	Node(int data){
+		this.data = data;
+		next = null;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

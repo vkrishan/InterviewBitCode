@@ -1,0 +1,59 @@
+class Merge2LL{
+	
+	// 1,2,3,4,5,6
+	// 2,4,6
+	// o/p- 1,2,2,3,4,4,5,6,6
+
+	// if ptr1 == null; add the complete ptr2 list to new list
+	// if ptr2 == null; add the complete ptr1 list to new list
+	// compare ptr1 with ptr2 
+	// Add the lesser ptr to new list and increment it
+	// return head
+
+	Node head;
+	LinkedList<Integer> LL1 = new LinkedList<>();
+
+	Node mergeLists(Node head1, Node head2){
+
+		Node curr1 = head1;
+		Node curr2= head2;
+
+		while(curr1!=null && curr2!=null){
+
+			if(curr1==null && curr2!=null){
+				while(curr2!=null){
+					head.next = curr2;
+					curr2 = curr2.next;
+				}
+
+			}
+			else if(curr2==null && curr1!=null){
+				while(curr1!=null){
+					head.next = curr1;
+					curr1 = curr1.next;
+				}
+			}
+
+			else{
+				if(curr1 < curr2){
+					head.next = curr1;
+					curr1 = curr1.next;
+				}else{
+					head.next = curr2;
+					curr2 = curr2.next;
+				}
+
+			}
+
+			return head;
+		}
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+}

@@ -1,0 +1,135 @@
+
+// 	R A D A R
+// L O O L
+// https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+// 1. Find Length
+// 2. If length is odd, find midElement
+// 3. Now traverse till mid+1 and from here reverse the list.
+// 4. Keep 1 ptr at start and 2nd ptr at mid+1
+// 5. Compare both pointers.
+
+
+
+public class PalindromeList {
+
+	static Node head; // Head node is always there..
+	// get Length
+	static int getLength(Node head){
+
+		Node current = head;
+		int count = 0;
+
+		while(current !=null){
+			count++;
+			current = current.next;
+			
+		}
+		return count;
+	}
+
+  
+	// Reverse list
+	static Node reverseList(Node node){
+
+		Node current = node;
+		Node previous = null;
+		Node next = null;
+
+		while(current!=null){
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		node = previous;
+		return node;
+
+	}
+
+	// Print list
+	void printList(Node head){
+		Node temp = head;
+		while(temp!=null) {
+			System.out.println(temp.data);
+			temp = temp.next;
+		}
+	}
+
+	// Palindrome check
+	static boolean isPalindrome(Node head){
+
+		int midIndex = (getLength(head)/2);
+		
+		// if length is odd
+		if(getLength(head)%2!=0){
+			// Odd number of Nodes
+			
+			int count = 0;
+			Node newStart = head;
+			Node ptr2 = head;
+			while(count<=midIndex && newStart!=null && ptr2!=null){
+				newStart = newStart.next;
+				ptr2 = ptr2.next;
+			}
+
+			reverseList(newStart.next); // This will reverse the list starting this point
+
+			Node ptr1 = head;
+		
+			// Compare the two lists
+
+			while(ptr2!=null){
+				if(ptr1.data != ptr2.data){
+					return false;
+				}
+			}
+			return true;
+
+		}
+
+		else{
+		// maintain 2 pointers
+			Node ptr1= head;
+			int count = 0;
+			Node ptr2 = head;
+			while(count<getLength(head) && ptr2!=null){
+				ptr2 = ptr2.next;
+			}
+
+			while(ptr1.data<ptr2.data){
+				if(ptr1.data == ptr2.data){
+					ptr1 = ptr1.next;
+					ptr2 = ptr2.next;
+				}else{
+					return false;
+				}
+			}
+			return true;
+
+		}
+
+	}
+
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		PalindromeList list = new PalindromeList();
+        list.head = new Node(85);
+        list.head.next = new Node(15);
+        list.head.next.next = new Node(16);
+        list.head.next.next.next = new Node(85);
+         
+        System.out.println("Given Linked list");
+        list.printList(list.head);
+		System.out.println();
+        
+		System.out.println("len..."+getLength(list.head));;
+		int midIndex = (getLength(head)/2);
+		System.out.println("Mid..index"+midIndex);
+	
+		System.out.println(isPalindrome(list.head));
+	}
+
+}
